@@ -1,0 +1,9 @@
+[Unit]
+Description=Example Project
+
+[Service]
+ExecStart=/usr/bin/example-project
+
+[Install]
+WantedBy=multi-user.target
+

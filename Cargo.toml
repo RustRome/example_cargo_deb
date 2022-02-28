@@ -17,9 +17,11 @@ log = "0.4"
 
 # Package Generation
 [package.metadata.deb]
+maintainer-scripts = "deb_scripts/"
 assets = [
     ["assets/*","var/www/example-project/","644"],
     ["assets/style/*","var/www/example-project/style/","644"],
     ["target/release/example-project","usr/bin/example-project","744"],
 ]
+systemd-units = {enable=true}
 

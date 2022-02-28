@@ -2,6 +2,7 @@
 Description=Example Project
 
 [Service]
+EnvironmentFile=/etc/example-project/config-file
 ExecStart=/usr/bin/example-project
 
 [Install]

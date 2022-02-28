@@ -9,3 +9,13 @@ license = "Apache 2"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+
+# Package Generation
+[package.metadata.deb]
+assets = [
+    ["assets/*","var/www/example_project/","644"],
+    ["assets/style/*","var/www/example_project/style/","644"],
+    ["target/release/example_project","usr/bin/example_project","744"],
+]
+

@@ -31,7 +31,8 @@ assets = [
     ["target/release/example-project","usr/bin/example-project","744"],
     ["config/config-file","etc/example-project/config-file","644"],
     ["config/database.template","etc/example-project/database.template","644"],
-    ["migrations/2022-02-28-162654_init/up.sql","/usr/share/dbconfig-common/data/example-project/install/pgsql","644"],
+    ["full_sql.sql","/usr/share/dbconfig-common/data/example-project/install/pgsql","644"],
+    ["migrations/2022-03-14-162205_upgrade/up.sql","/usr/share/dbconfig-common/data/example-project/upgrade/pgsql/0.1.0","644"],
 ]
 systemd-units = {enable=true}
 

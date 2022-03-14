@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# source debconf
+. /usr/share/debconf/confmodule
+
+# dbconfig-common
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+dbc_generate_include=template:/etc/example-project/database
+dbc_generate_include_args=' -o template_infile="/etc/example-project/database.template"'
+dbc_go example-project "$@"
+
+#DEBHELPER#

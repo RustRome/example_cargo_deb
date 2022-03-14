@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# source debconf
+. /usr/share/debconf/confmodule
+
+# dbconfig-common
+. /usr/share/dbconfig-common/dpkg/postrm.pgsql
+dbc_go example-project $@
+
+
+if [ "$1" = "purge" ]; then
+	rm -f /etc/example-project/database
+	if which ucf >/dev/null 2>&1; then
+		ucf --purge /etc/example-project/database
+		ucfr --purge example-project /etc/example-project/database
+	fi
+fi
+
+
+#DEBHELPER#

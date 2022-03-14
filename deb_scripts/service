@@ -3,6 +3,7 @@ Description=Example Project
 
 [Service]
 EnvironmentFile=/etc/example-project/config-file
+EnvironmentFile=/etc/example-project/database
 ExecStart=/usr/bin/example-project
 
 [Install]

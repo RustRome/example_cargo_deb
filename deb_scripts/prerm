@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/prerm.pgsql 
+dbc_go example-project "$@"
+
+#DEBHELPER#

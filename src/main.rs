@@ -46,6 +46,22 @@ async fn list_event(db_state: Data<DbState>) -> HttpResponse {
     }
 }
 
+async fn add_food(event: Json<EventCreate>, db_state: Data<DbState>) -> String {
+    if let Err(e) = model::Food::insert(&db_state.conn(), &event.title) {
+        format!("Err {:?}", e)
+    } else {
+        "Ok".to_owned()
+    }
+}
+
+async fn list_food(db_state: Data<DbState>) -> HttpResponse {
+    match model::Food::list(&db_state.conn()) {
+        Ok(ok) => HttpResponseBuilder::new(StatusCode::OK).json(ok),
+        Err(e) => HttpResponseBuilder::new(StatusCode::INTERNAL_SERVER_ERROR)
+            .body(format!("Err {:?}", e).as_bytes().to_owned()),
+    }
+}
+
 struct DbState {
     pool: Pool<ConnectionManager<PgConnection>>,
 }
@@ -77,6 +93,8 @@ async fn main() -> std::io::Result<()> {
             .app_data(data.clone())
             .service(web::resource("list_events").route(web::get().to(list_event)))
             .service(web::resource("add_event").route(web::post().to(add_event)))
+            .service(web::resource("list_foods").route(web::get().to(list_food)))
+            .service(web::resource("add_food").route(web::post().to(add_food)))
             .service(Files::new("/", &config.static_path).index_file("index.html"))
             .wrap(Logger::default())
     })

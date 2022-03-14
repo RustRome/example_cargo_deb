@@ -4,3 +4,10 @@ table! {
         title -> Text,
     }
 }
+
+table! {
+    food (id) {
+        id -> Int4,
+        name -> Text,
+    }
+}
